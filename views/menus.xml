@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="pacientes_action" model="ir.actions.act_window">
+            <field name="name">Pacientes</field>
+            <field name="res_model">odoo_hospital.paciente</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="tratamientos_action" model="ir.actions.act_window">
+            <field name="name">Tratamientos</field>
+            <field name="res_model">odoo_hospital.tratamiento</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="odoo_hospital_parent_menu" name="Hospital" sequence="20" web_icon="odoo_hospital,static/description/icon.png" action="pacientes_action"/>
+        <menuitem id="odoo_hospital_paciente_menu" name="Pacientes" parent="odoo_hospital_parent_menu" sequence="1" action="pacientes_action"/>
+        <menuitem id="odoo_hospital_tratamiento_menu" name="Tratamientos" parent="odoo_hospital_parent_menu" sequence="2" action="tratamientos_action"/>
+        <menuitem id="odoo_hospital_informes_menu" name="Informes" parent="odoo_hospital_parent_menu" sequence="3"/>
+
+        <menuitem id="odoo_hospital_informe1_menu" name="Tratamiento más solicitado" parent="odoo_hospital_informes_menu" sequence="1" action="tratamiento_mas_solicitado_action"/>
+        <menuitem id="odoo_hospital_informe2_menu" name="Pacientes con menos consultas" parent="odoo_hospital_informes_menu" sequence="2" action="pacientes_menos_consultas_action"/>
+        <menuitem id="odoo_hospital_informe3_menu" name="Pacientes que compraron al menos 1 tratamiento" parent="odoo_hospital_informes_menu" sequence="3" action="pacientes_compraron_action"/>
+
+    </data>
+</openerp>

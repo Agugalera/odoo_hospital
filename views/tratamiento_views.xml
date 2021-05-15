@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <!-- Vista de Lista de tratamiento-->
+    <record model="ir.ui.view" id="odoo_hospital_tratamiento_lista">
+      <field name="name">odoo.hospital.tratamiento.lista</field>
+      <field name="model">odoo_hospital.tratamiento</field>
+      <field name="arch" type="xml">
+        <tree>
+            <field name="create_date" string="Fecha de creación" readonly="1"/>
+            <field name="name" readonly="1"/>
+            <field name="valor" string="$ Valor" readonly="1"/>
+            <field name="veces_solicitado" string="solicitado" readonly="1"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Vista de formulario del tratamiento -->
+    <record model="ir.ui.view" id="odoo_hospital_tratamiento_form">
+        <field name="name">hospital.tratamiento.form</field>
+        <field name="model">odoo_hospital.tratamiento</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name" string="Nombre"/>
+                    <field name="valor" string="Valor $"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+</odoo>

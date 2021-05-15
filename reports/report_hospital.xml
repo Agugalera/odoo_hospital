@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <report id="informe_tratamiento"
+    string="Tratamiento más Solicitado"
+    model="odoo_hospital.tratamiento"
+    report_type="qweb-pdf"
+    name="odoo_hospital.informe_tratamiento_view"
+    file="odoo_hospital.informe_tratamiento_view"
+   print_report_name="'Reporte'"
+    />
+
+   <report id="informe_paciente"
+    string="Pacientes con menos consultas que el promedio"
+    model="odoo_hospital.informe2"
+    report_type="qweb-pdf"
+    name="odoo_hospital.informe_paciente_view"
+    file="odoo_hospital.informe_paciente_view"
+   print_report_name="'Pacientes con menos consultas'"
+    />
+
+   <report id="informe_paciente_comprador"
+    string="Pacientes que compraron al menos 1 tratamiento"
+    model="odoo_hospital.informe3"
+    report_type="qweb-pdf"
+    name="odoo_hospital.informe_paciente_comprador_view"
+    file="odoo_hospital.informe_paciente_comprador_view"
+   print_report_name="'Pacientes compradores'"
+    />
+
+    <template id="informe_tratamiento_view">
+        <t t-call="web.html_container">
+            <div class="header" style="border-bottom: 1px solid black;">
+                <h3 class="text-center">Tratamiento más Solicitado
+                </h3>
+            </div>
+            <div class="article mt0 o_report_layout_standard">
+                <table class="table table-condensed table-bordered">
+                    <thead>
+                        <th style="width: 65%">Nombre</th>
+                        <th class="text-center" style="width: 15%">Cantidad solicitada</th>
+                        <th class="text-center" style="width: 20%">Total facturado $</th>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="doc">
+                            <tr>
+                                <td><span t-esc="doc.name"/></td>
+                                <td class="text-center"><span t-esc="doc.veces_solicitado"/></td>
+                                <t t-set="monto" t-value="doc.valor*doc.veces_solicitado" />
+                                <td class="text-center">
+                                    <span t-esc="monto"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer o_standard_footer" style="border-top: 1px solid black;">
+                <div class="row text-center">
+                    <div class="col col-12 text-center">
+                        <ul class="list-inline">
+                            <li class="list-inline-item">Page:</li>
+                            <li class="list-inline-item">
+                                <span class="page"/>
+                            </li>
+                            <li class="list-inline-item">/</li>
+                            <li class="list-inline-item">
+                                <span class="topage"/>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="informe_paciente_view">
+        <t t-call="web.html_container">
+            <div class="header" style="border-bottom: 1px solid black;">
+                <h3 class="text-center">Pacientes con menos consultas que el promedio
+                </h3>
+            </div>
+            <div class="article mt0 o_report_layout_standard">
+                <table class="table table-condensed table-bordered">
+                    <thead>
+                        <th style="width: 65%">Paciente</th>
+                        <th class="text-center" style="width: 15%">DNI</th>
+                        <th class="text-center" style="width: 20%">Consultas</th>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="doc">
+                            <t t-foreach="doc.pacientes_menos_consultas_ids" t-as="paciente">
+                                <tr>
+                                    <td><span t-esc="paciente.name"/></td>
+                                    <td class="text-center"><span t-esc="paciente.dni"/></td>
+                                    <td class="text-center">
+                                        <span t-esc="paciente.cantidad_consultas"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer o_standard_footer" style="border-top: 1px solid black;">
+                <div class="row text-center">
+                    <div class="col col-12 text-center">
+                        <ul class="list-inline">
+                            <li class="list-inline-item">Page:</li>
+                            <li class="list-inline-item">
+                                <span class="page"/>
+                            </li>
+                            <li class="list-inline-item">/</li>
+                            <li class="list-inline-item">
+                                <span class="topage"/>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="informe_paciente_comprador_view">
+        <t t-call="web.html_container">
+            <div class="header" style="border-bottom: 1px solid black;">
+                <h3 class="text-center">Pacientes que compraron al menos un tratamiento
+                </h3>
+            </div>
+            <div class="article mt0 o_report_layout_standard">
+                <table class="table table-condensed table-bordered">
+                    <thead>
+                        <th style="width: 65%">Porcentaje pacientes compradores</th>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="doc">
+                            <tr>
+                                <td><span t-esc="doc.porcentaje"/> %</td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer o_standard_footer" style="border-top: 1px solid black;">
+                <div class="row text-center">
+                    <div class="col col-12 text-center">
+                        <ul class="list-inline">
+                            <li class="list-inline-item">Page:</li>
+                            <li class="list-inline-item">
+                                <span class="page"/>
+                            </li>
+                            <li class="list-inline-item">/</li>
+                            <li class="list-inline-item">
+                                <span class="topage"/>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

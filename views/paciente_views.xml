@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <!-- Vista de Lista de pacientes-->
+    <record model="ir.ui.view" id="odoo_hospital_paciente_lista">
+      <field name="name">odoo.hospital.paciente.lista</field>
+      <field name="model">odoo_hospital.paciente</field>
+      <field name="arch" type="xml">
+        <tree>
+            <field name="create_date" string="Fecha de creación" readonly="1"/>
+            <field name="name" readonly="1"/>
+            <field name="dni" string="DNI" readonly="1"/>
+            <field name="cantidad_consultas" string="Cantidad de Consultas" readonly="1"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Vista de formulario del paciente -->
+    <record model="ir.ui.view" id="odoo_hospital_paciente_form">
+        <field name="name">hospital.paciente.form</field>
+        <field name="model">odoo_hospital.paciente</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name" string="Nombre"/>
+                </group>
+                <group>
+                    <field name="dni" string="DNI"/>
+                    <field name="cantidad_consultas" string="Cantidad de consultas"/>
+                </group>
+                <group>
+                    <field name="tratamiento_realizado_ids" string="Productos inlcuidos">
+                        <tree editable="bottom">
+                            <field name="tratamiento"/>
+                            <field name="cantidad"/>
+                        </tree>
+                    </field>
+                </group>
+            </form>
+        </field>
+    </record>
+
+</odoo>

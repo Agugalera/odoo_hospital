@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="informe_tratamiento_wizard" model="ir.ui.view" >
+        <field name="name">Tratamiento mas solicitado</field>
+        <field name="model">odoo_hospital.informe1</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Generar informe">
+                <group>
+                    <p>
+                        Se generará un reporte que informe el tratamiento más solicitado por los pacientes, indicando cantidad y monto facturado.
+                    </p>
+                </group>
+                <footer>
+                    <button name="imprimir_reporte" string="Obtener reporte" type="object" class="oe_highlight"/>
+                    <button string="Cancelar" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="informe_paciente_wizard" model="ir.ui.view" >
+        <field name="name">Pacientes</field>
+        <field name="model">odoo_hospital.informe2</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Generar informe">
+                <group>
+                    <p>
+                        Se generará un reporte que indique que pacientes asistieron a menos consultas que el promedio de todos los pacientes
+                    </p>
+                </group>
+                <footer>
+                    <button name="imprimir_reporte" string="Obtener reporte" type="object" class="oe_highlight"/>
+                    <button string="Cancelar" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="informe_paciente_comprador_wizard" model="ir.ui.view" >
+        <field name="name">Pacientes que compraron</field>
+        <field name="model">odoo_hospital.informe3</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Generar informe">
+                <group>
+                    <p>
+                        Se generará un reporte que indique % del total de pacientes compraron al menos 1 tratamiento
+                    </p>
+                </group>
+                <footer>
+                    <button name="imprimir_reporte" string="Obtener reporte" type="object" class="oe_highlight"/>
+                    <button string="Cancelar" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="tratamiento_mas_solicitado_action"
+        name="Tratamiento más solicitado"
+        res_model="odoo_hospital.informe1"
+        view_mode="form"
+        target="new"/>
+
+        <act_window id="pacientes_menos_consultas_action"
+        name="Pacientes con menos consultas"
+        res_model="odoo_hospital.informe2"
+        view_mode="form"
+        target="new"/>
+
+        <act_window id="pacientes_compraron_action"
+        name="Pacientes que compraron"
+        res_model="odoo_hospital.informe3"
+        view_mode="form"
+        target="new"/>
+
+</odoo>
